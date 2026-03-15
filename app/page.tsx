@@ -1,65 +1,236 @@
-import Image from "next/image";
+import type { Metadata } from "next";
+import Link from "next/link";
+import DebtCalculator from "./components/DebtCalculator";
+import { debtTypes } from "./lib/debt-engine";
+
+export const metadata: Metadata = {
+  title: "Debt Payoff Calculator - Free Avalanche vs Snowball Comparison | 2026",
+  description:
+    "Free debt payoff calculator. Enter your debts, compare avalanche and snowball methods, and see your debt-free date. Find out how extra payments save you thousands in interest.",
+  keywords: [
+    "debt payoff calculator",
+    "debt free calculator",
+    "avalanche vs snowball",
+    "debt snowball calculator",
+    "debt avalanche calculator",
+    "pay off debt faster",
+    "credit card payoff calculator",
+    "student loan payoff calculator",
+    "how to pay off debt",
+    "debt free date",
+  ],
+};
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+    <main className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
+      {/* Hero */}
+      <div className="max-w-4xl mx-auto px-4 pt-12 pb-8 text-center">
+        <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">
+          Debt Payoff{" "}
+          <span className="text-blue-600">Calculator</span>
+        </h1>
+        <p className="text-xl text-gray-600 mb-2 max-w-2xl mx-auto">
+          Enter your debts, compare avalanche vs snowball strategies, and find
+          your debt-free date. See how extra payments save you thousands.
+        </p>
+        <p className="text-sm text-gray-400">
+          Free, no sign-up required. Your data stays in your browser.
+        </p>
+      </div>
+
+      {/* Calculator */}
+      <div className="max-w-4xl mx-auto px-4 pb-12">
+        <DebtCalculator />
+      </div>
+
+      {/* Debt Type Pages */}
+      <section className="max-w-4xl mx-auto px-4 pb-12">
+        <h2 className="text-2xl font-bold text-gray-900 mb-6">
+          Payoff Calculators by Debt Type
+        </h2>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+          {debtTypes.map((dt) => (
+            <Link
+              key={dt.slug}
+              href={`/${dt.slug}`}
+              className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow p-4 text-center"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+              <p className="font-bold text-gray-900 text-sm">{dt.name}</p>
+              <p className="text-xs text-gray-500">{dt.commonRates}</p>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* Avalanche vs Snowball Explainer */}
+      <section className="max-w-4xl mx-auto px-4 pb-12">
+        <h2 className="text-2xl font-bold text-gray-900 mb-6">
+          Avalanche vs Snowball: Which Method Is Best?
+        </h2>
+        <div className="grid md:grid-cols-2 gap-6">
+          <div className="bg-white rounded-xl shadow-sm p-6">
+            <h3 className="text-lg font-bold text-blue-600 mb-3">
+              Avalanche Method
+            </h3>
+            <p className="text-gray-700 text-sm mb-3">
+              Pay minimums on everything, then put all extra money toward the
+              debt with the <strong>highest interest rate</strong>.
+            </p>
+            <ul className="text-sm text-gray-600 space-y-1">
+              <li>+ Saves the most money in total interest</li>
+              <li>+ Mathematically optimal</li>
+              <li>- Can feel slow if highest-rate debt is large</li>
+            </ul>
+          </div>
+          <div className="bg-white rounded-xl shadow-sm p-6">
+            <h3 className="text-lg font-bold text-blue-600 mb-3">
+              Snowball Method
+            </h3>
+            <p className="text-gray-700 text-sm mb-3">
+              Pay minimums on everything, then put all extra money toward the
+              debt with the <strong>smallest balance</strong>.
+            </p>
+            <ul className="text-sm text-gray-600 space-y-1">
+              <li>+ Quick wins boost motivation</li>
+              <li>+ Fewer debts to track sooner</li>
+              <li>- Costs more in total interest</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* How it works */}
+      <section className="max-w-4xl mx-auto px-4 pb-12">
+        <h2 className="text-2xl font-bold text-gray-900 mb-6">
+          How the Debt Payoff Calculator Works
+        </h2>
+        <div className="grid md:grid-cols-3 gap-6">
+          <div className="bg-white rounded-xl shadow-sm p-6">
+            <div className="text-3xl font-bold text-blue-600 mb-2">1</div>
+            <h3 className="font-bold text-gray-900 mb-2">Enter Your Debts</h3>
+            <p className="text-gray-600 text-sm">
+              Add each debt with its balance, interest rate, and minimum payment.
+              Add as many debts as you have.
+            </p>
+          </div>
+          <div className="bg-white rounded-xl shadow-sm p-6">
+            <div className="text-3xl font-bold text-blue-600 mb-2">2</div>
+            <h3 className="font-bold text-gray-900 mb-2">Set Extra Payment</h3>
+            <p className="text-gray-600 text-sm">
+              Tell us how much extra you can pay each month beyond your minimums.
+              Even $50 extra makes a huge difference.
+            </p>
+          </div>
+          <div className="bg-white rounded-xl shadow-sm p-6">
+            <div className="text-3xl font-bold text-blue-600 mb-2">3</div>
+            <h3 className="font-bold text-gray-900 mb-2">Compare Strategies</h3>
+            <p className="text-gray-600 text-sm">
+              See your debt-free date, total interest, and payoff order for both
+              avalanche and snowball methods side by side.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* SEO Content */}
+      <section className="max-w-4xl mx-auto px-4 pb-12">
+        <h2 className="text-2xl font-bold text-gray-900 mb-4">
+          How to Pay Off Debt Faster in 2026
+        </h2>
+        <div className="max-w-none text-gray-700 leading-relaxed space-y-4">
+          <p>
+            The average American household carries $104,000 in debt including
+            mortgages, $6,500 in credit card debt, and $37,000 in student loans.
+            Paying off debt faster starts with a plan and the right strategy.
+          </p>
+          <p>
+            The two most popular debt payoff strategies are the avalanche method
+            and the snowball method. The avalanche method targets your
+            highest-interest debt first, saving you the most money. The snowball
+            method targets your smallest balance first, giving you quick
+            psychological wins that keep you motivated.
+          </p>
+          <p>
+            Research shows that the snowball method leads to higher completion
+            rates because of the motivational effect of eliminating debts
+            quickly. However, the avalanche method saves more money in total
+            interest. The best method is the one you will actually stick with.
+          </p>
+          <h3 className="text-xl font-bold text-gray-900 mt-6">
+            The Power of Extra Payments
+          </h3>
+          <p>
+            Even a small amount of extra money toward debt each month has a
+            massive compounding effect. On $20,000 of credit card debt at 22%
+            APR, paying $100 extra per month saves over $14,000 in interest and
+            gets you debt-free 8 years sooner. Use the calculator above to see
+            the exact impact for your situation.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+      </section>
+
+      {/* FAQ Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: [
+              {
+                "@type": "Question",
+                name: "What is the avalanche method for paying off debt?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "The avalanche method means paying minimum payments on all debts, then directing all extra money to the debt with the highest interest rate. Once that debt is paid off, you move to the next highest rate. This method saves the most money in total interest paid.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "What is the snowball method for paying off debt?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "The snowball method means paying minimum payments on all debts, then directing all extra money to the debt with the smallest balance. Once that debt is paid off, you move to the next smallest. This method provides quick wins that keep you motivated.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "Which is better, avalanche or snowball?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "The avalanche method saves more money in total interest. The snowball method provides faster psychological wins. Research shows the snowball method has higher completion rates due to motivation, but the avalanche method is mathematically optimal. The best method is the one you will stick with.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "How much should I put toward debt each month?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Financial experts recommend the 50/30/20 rule: 50% of income for needs, 30% for wants, and 20% for savings and debt repayment. If you have high-interest debt, consider temporarily allocating more toward debt. Even $50-100 extra per month can save thousands in interest over time.",
+                },
+              },
+            ],
+          }),
+        }}
+      />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            name: "Debt Payoff Calculator",
+            description:
+              "Free debt payoff calculator. Compare avalanche and snowball methods. See your debt-free date and total interest savings.",
+            url: "https://debt-payoff-calculator.vercel.app",
+            applicationCategory: "FinanceApplication",
+            operatingSystem: "Any",
+            offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+          }),
+        }}
+      />
+    </main>
   );
 }
