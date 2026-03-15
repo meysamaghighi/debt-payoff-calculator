@@ -107,7 +107,7 @@ export default function DebtCalculator({ prefilledDebts }: Props) {
                     value={debt.name}
                     onChange={(e) => updateDebt(debt.id, "name", e.target.value)}
                     placeholder="e.g. Visa Card"
-                    className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   />
                 </div>
                 <div>
@@ -121,7 +121,7 @@ export default function DebtCalculator({ prefilledDebts }: Props) {
                       updateDebt(debt.id, "balance", Number(e.target.value))
                     }
                     placeholder="5000"
-                    className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   />
                 </div>
                 <div>
@@ -136,7 +136,7 @@ export default function DebtCalculator({ prefilledDebts }: Props) {
                       updateDebt(debt.id, "interestRate", Number(e.target.value))
                     }
                     placeholder="22.0"
-                    className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   />
                 </div>
                 <div>
@@ -154,7 +154,7 @@ export default function DebtCalculator({ prefilledDebts }: Props) {
                       )
                     }
                     placeholder="100"
-                    className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                   />
                 </div>
               </div>
